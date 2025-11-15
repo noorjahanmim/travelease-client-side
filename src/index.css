@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+
+* {
+    font-family: "Lora", serif;
+}
+
+
+body {
+  @apply font-sans m-0 p-0 transition-colors duration-300;
+}
+
+
+/* :root,
+.light body {
+  @apply bg-white text-gray-900;
+} */
+
+/* Dark mode */
+/* .dark body {
+  @apply bg-gray-900 text-white;
+} */
