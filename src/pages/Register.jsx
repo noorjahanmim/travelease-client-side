@@ -47,37 +47,39 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[80vh]">
-      <div className="bg-white shadow-md p-8 rounded-lg w-full max-w-md">
-        <h2 className="text-3xl font-semibold text-center mb-4">Register</h2>
+    <div className="flex justify-center items-center min-h-[80vh] px-4 bg-gray-50 dark:bg-gray-900 transition-colors">
+      <div className="bg-white dark:bg-gray-800 shadow-md p-8 rounded-lg w-full max-w-md transition-colors">
+        <h2 className="text-3xl font-semibold text-center mb-4 text-gray-900 dark:text-gray-100">
+          Register
+        </h2>
         <form onSubmit={handleRegister} className="space-y-4">
           <input
             type="text"
             name="name"
             placeholder="Full Name"
             required
-            className="border p-2 rounded w-full"
+            className="border border-gray-300 dark:border-gray-600 p-2 rounded w-full bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <input
             type="email"
             name="email"
             placeholder="Email"
             required
-            className="border p-2 rounded w-full"
+            className="border border-gray-300 dark:border-gray-600 p-2 rounded w-full bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <input
             type="text"
             name="photoURL"
             placeholder="Photo URL"
             required
-            className="border p-2 rounded w-full"
+            className="border border-gray-300 dark:border-gray-600 p-2 rounded w-full bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <input
             type="password"
             name="password"
             placeholder="Password"
             required
-            className="border p-2 rounded w-full"
+            className="border border-gray-300 dark:border-gray-600 p-2 rounded w-full bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
             type="submit"
@@ -90,15 +92,15 @@ const Register = () => {
 
         <button
           onClick={handleGoogle}
-          className="mt-4 flex items-center justify-center gap-2 border rounded py-2 w-full hover:bg-gray-100"
+          className="mt-4 flex items-center justify-center gap-2 border border-gray-300 dark:border-gray-600 rounded py-2 w-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
           disabled={loading}
         >
           <FcGoogle size={22} /> Continue with Google
         </button>
 
-        <p className="text-center mt-4 text-gray-600">
+        <p className="text-center mt-4 text-gray-600 dark:text-gray-300">
           Already have an account?{" "}
-          <Link to="/login" className="text-blue-600 underline">
+          <Link to="/login" className="text-blue-600 dark:text-blue-400 underline">
             Login
           </Link>
         </p>

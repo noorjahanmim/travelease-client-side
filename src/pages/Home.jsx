@@ -12,7 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("https://travelease-vehicle-booking.vercel.app/models?limit=6")
+      .get("https://travelease-vehicle-booking.vercel.app/models")
       .then((res) => setVehicles(res.data))
       .catch((err) => console.error(err))
       .finally(() => setLoading(false));
