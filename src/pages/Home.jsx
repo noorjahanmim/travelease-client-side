@@ -21,7 +21,7 @@ const Home = () => {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div className="transition-colors duration-500 bg-white dark:bg-gray-900 dark:text-gray-100 font-sans">
+    <div className="transition-colors duration-500  dark:text-gray-100 font-sans">
       {/* 🔷 Banner Section */}
       <section
         className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] bg-cover bg-center flex items-center justify-center text-white"
