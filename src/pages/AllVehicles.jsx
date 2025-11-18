@@ -58,7 +58,7 @@ const AllVehicles = () => {
 
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-        {/* Category Filter */}
+        
         <select
           onChange={(e) => setCategory(e.target.value)}
           className="p-3 rounded-lg border dark:bg-gray-800 dark:text-white"
