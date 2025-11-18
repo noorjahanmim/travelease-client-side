@@ -61,9 +61,9 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* Right side (desktop) */}
+        
         <div className="hidden md:flex items-center gap-4">
-          {/* Theme toggle */}
+         
           <button
             onClick={toggleTheme}
             className="p-2 rounded-full bg-white text-blue-600 dark:bg-gray-700 dark:text-yellow-300 transition-colors duration-300"
@@ -71,7 +71,7 @@ const Navbar = () => {
             {theme === "light" ? <FaMoon /> : <FaSun />}
           </button>
 
-          {/* User info */}
+          
           {user ? (
             <div className="flex items-center gap-2 group relative">
               {user.photoURL ? (
@@ -86,7 +86,6 @@ const Navbar = () => {
                 </div>
               )}
 
-              {/* Display name on hover */}
               {user.displayName && (
                 <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
                   {user.displayName}
@@ -118,13 +117,13 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Mobile menu toggle */}
+        
         <button onClick={toggleMobileMenu} className="md:hidden text-2xl">
           {mobileOpen ? <FaTimes /> : <FaBars />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      
       {mobileOpen && (
         <div className="md:hidden bg-[#1E40AF] dark:bg-[#1E3A8A] text-white px-4 pb-4 space-y-4 transition-all duration-300">
           <ul className="flex flex-col gap-4">
@@ -146,7 +145,7 @@ const Navbar = () => {
           </ul>
 
           <div className="flex items-center gap-4 mt-4">
-            {/* Theme toggle */}
+            
             <button
               onClick={toggleTheme}
               className="p-2 rounded-full bg-white text-blue-600 dark:bg-gray-700 dark:text-yellow-300 transition-colors duration-300"
