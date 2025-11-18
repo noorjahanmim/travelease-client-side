@@ -94,7 +94,7 @@ const AllVehicles = () => {
         </select>
       </div>
 
-      {/* Vehicle Cards */}
+      
       {filtered.length === 0 ? (
         <p className="text-center text-gray-500 dark:text-gray-300">No vehicles found.</p>
       ) : (
