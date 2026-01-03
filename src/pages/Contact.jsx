@@ -43,8 +43,9 @@ const Contact = () => {
           className="container mx-auto px-6 text-center"
         >
           <span className="text-blue-600 font-black tracking-widest uppercase text-xs mb-4 block">Contact Us</span>
-          <h1 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white mb-6 tracking-tighter">
-            Let's Start Your <span className="bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent">Journey</span>
+          <h1 className="text-5xl font-black text-gray-900 dark:text-white mb-6 tracking-tighter">
+            Let's Start Your <span className="font-black tracking-tight bg-gradient-to-r from-blue-600 to-indigo-400 
+           dark:from-blue-800 dark:to-purple-700 bg-clip-text text-transparent font-extrabold">Journey</span>
           </h1>
           <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-lg">
             Have a specific request or need a custom booking? Our luxury concierge team is ready to assist you.

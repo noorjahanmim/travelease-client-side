@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  FaCarSide, FaBolt, FaShuttleVan, FaCarAlt, FaArrowRight, 
+import {
+  FaCarSide, FaBolt, FaShuttleVan, FaCarAlt, FaArrowRight,
   FaShieldAlt, FaHeadset, FaGlobeAmericas, FaStar, FaMobileAlt,
   FaPlay, FaQuoteLeft, FaCheckCircle, FaHashtag
 } from "react-icons/fa";
@@ -60,80 +60,77 @@ const Home = () => {
 
   return (
     <div className="bg-white dark:bg-[#0a0f1a] transition-colors duration-700 font-sans selection:bg-blue-500 selection:text-white">
-      
+
       {/* 1. ULTRA HERO SECTION (FULL WIDTH) */}
-    <section className="relative h-[95vh] overflow-hidden">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeSlide}
-            initial={{ opacity: 0, scale: 1.08 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.4 }}
-            className="absolute inset-0"
-          >
-            <img
-              src={slides[activeSlide].img}
-              className="w-full h-full object-cover"
-              alt="hero"
-            />
-            <div className="absolute inset-0 " />
-            <div className="absolute inset-0 " />
-          </motion.div>
-        </AnimatePresence>
+<section className="relative h-[70vh] overflow-hidden bg-black">
+  <AnimatePresence mode="wait">
+    <motion.div
+      key={activeSlide}
+      initial={{ opacity: 0, scale: 1.08 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1.4 }}
+      className="absolute inset-0"
+    >
+      <img
+        src={slides[activeSlide].img}
+        className="w-full h-full object-cover"
+        alt="hero"
+      />
+      <div className="absolute inset-0 bg-black/40" /> {/* Overlay */}
+    </motion.div>
+  </AnimatePresence>
 
-        <div className="relative z-10 h-full container mx-auto px-6 flex items-center">
-          <motion.div
-            initial={{ x: -60, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            className="max-w-3xl"
-          >
-            <span className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-4 py-2 rounded-full text-xs font-black tracking-widest uppercase text-blue-400 mb-6">
-              Premium Vehicle Platform
-            </span>
+  <div className="relative z-10 h-full container mx-auto px-6 flex flex-col justify-center items-center text-center">
+    <motion.div
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      className="max-w-3xl"
+    >
+      <span className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-4 py-2 rounded-full text-xs font-black tracking-widest uppercase text-white mb-6">
+        Premium Vehicle Platform
+      </span>
 
-            <h1 className="text-6xl md:text-8xl font-black leading-tight mb-6">
-              {slides[activeSlide].title}{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
-                TravelEase
-              </span>
-            </h1>
+      <h1 className="text-5xl md:text-7xl font-black leading-tight mb-6 text-white">
+        {slides[activeSlide].title}{" "}
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
+          TravelEase
+        </span>
+      </h1>
 
-            <p className="text-xl text-gray-300 mb-10 max-w-xl">
-              {slides[activeSlide].subtitle}
-            </p>
+      <p className="text-lg md:text-xl text-white/80 mb-10">
+        {slides[activeSlide].subtitle}
+      </p>
 
-            <div className="flex flex-wrap gap-4">
-              <Link
-                to="/allVehicles"
-                className="px-10 py-5 bg-gradient-to-r from-blue-600 to-indigo-400 
-           dark:from-blue-800 dark:to-purple-700 rounded-2xl font-bold flex items-center gap-3 hover:scale-105 transition shadow-2xl shadow-blue-500/30"
-              >
-                Explore Fleet <FaArrowRight />
-              </Link>
-              <button className="px-10 py-5 border border-white/20 bg-white/5 rounded-2xl font-bold flex items-center gap-3 hover:bg-white/10 transition">
-                <FaPlay className="text-blue-400" /> Watch Demo
-              </button>
-            </div>
-          </motion.div>
-        </div>
+      <div className="flex flex-wrap justify-center gap-4">
+        <Link
+          to="/allVehicles"
+          className="px-10 py-5 bg-gradient-to-r from-blue-600 to-indigo-400 
+          rounded-2xl font-bold flex items-center gap-3 hover:scale-105 transition shadow-2xl shadow-blue-500/30 text-white"
+        >
+          Explore Vehicles <FaArrowRight />
+        </Link>
+      </div>
+    </motion.div>
+  </div>
 
-        {/* Slide Indicators */}
-        <div className="absolute bottom-10 right-10 flex gap-3">
-          {slides.map((_, i) => (
-            <div
-              key={i}
-              className={`h-1 rounded-full transition-all ${
-                i === activeSlide ? "w-12 bg-blue-500" : "w-4 bg-white/30"
-              }`}
-            />
-          ))}
-        </div>
-      </section>
+  <div className="absolute bottom-10 right-10 flex gap-3">
+    {slides.map((_, i) => (
+      <div
+        key={i}
+        className={`h-1 rounded-full transition-all ${
+          i === activeSlide ? "w-12 bg-blue-500" : "w-4 bg-white/30"
+        }`}
+      />
+    ))}
+  </div>
+</section>
+
+
 
       {/* 2. FLOATING STATS SECTION */}
       <section className="relative z-20 -mt-16 container mx-auto px-6">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -158,12 +155,12 @@ const Home = () => {
         <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-20">
           <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <span className="text-blue-500 font-black tracking-[0.3em] uppercase text-xs mb-4 block">The Collections</span>
-            <h2 className="text-5xl font-black text-gray-900 dark:text-white">Our Exclusive <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-400">Latest Garage</span></h2>
+            <h2 className="text-5xl font-black text-gray-900 dark:text-white">Our Exclusive <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-400">Latest Garage</span></h2>
           </motion.div>
           <Link to="/allVehicles" className="px-8 py-4 bg-gray-100 dark:bg-white/5 dark:text-white rounded-2xl font-bold hover:bg-blue-600 hover:text-white transition-all">View Full Fleet</Link>
         </div>
 
-        <motion.div 
+        <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
@@ -185,7 +182,7 @@ const Home = () => {
               </div>
               <div className="px-4 pb-4">
                 <h4 className="text-xl font-black text-gray-900 dark:text-white mb-2 truncate">{vehicle.vehicleName}</h4>
-                <div className="flex items-center gap-2 text-gray-500 text-sm mb-6"><FaGlobeAmericas className="text-blue-500"/> {vehicle.location}</div>
+                <div className="flex items-center gap-2 text-gray-500 text-sm mb-6"><FaGlobeAmericas className="text-blue-500" /> {vehicle.location}</div>
                 <div className="flex justify-between items-center border-t border-gray-100 dark:border-white/5 pt-6">
                   <div>
                     <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">Rate</p>
@@ -206,7 +203,7 @@ const Home = () => {
         <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
           <div className="relative">
             <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl" />
-            <motion.div 
+            <motion.div
               initial={{ rotate: -5, opacity: 0 }}
               whileInView={{ rotate: 0, opacity: 1 }}
               className="relative z-10 p-6 bg-white dark:bg-gray-900 rounded-[3rem] shadow-2xl border border-gray-100 dark:border-white/5"
@@ -220,13 +217,14 @@ const Home = () => {
           </div>
           <div className="space-y-10">
             <motion.div variants={fadeInUp} initial="hidden" whileInView="visible">
-              <h2 className="text-5xl font-black text-gray-900 dark:text-white leading-tight mb-6">Why High-End Travelers <br/> <span className="text-blue-600">Choose TravelEase</span></h2>
+              <h2 className="text-5xl font-black text-gray-900 dark:text-white leading-tight mb-6">Why High-End Travelers <br /> <span className="text-5xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-indigo-400 
+           dark:from-blue-800 dark:to-purple-700 bg-clip-text text-transparent font-extrabold">Choose TravelEase</span></h2>
               <p className="text-gray-500 dark:text-gray-400 text-lg leading-relaxed">We don't just rent cars; we provide a gateway to your next great experience with unmatched precision and care.</p>
             </motion.div>
             <div className="grid gap-6">
               {[
-                { icon: <FaShieldAlt/>, title: "Uncompromised Safety", desc: "Military-grade encryption and comprehensive premium insurance." },
-                { icon: <FaBolt/>, title: "Hyper-Fast Booking", desc: "Confirm your luxury ride in less than 60 seconds." }
+                { icon: <FaShieldAlt />, title: "Uncompromised Safety", desc: "Military-grade encryption and comprehensive premium insurance." },
+                { icon: <FaBolt />, title: "Hyper-Fast Booking", desc: "Confirm your luxury ride in less than 60 seconds." }
               ].map((item, i) => (
                 <motion.div key={i} whileHover={{ x: 10 }} className="flex gap-6 p-8 bg-white dark:bg-gray-900 rounded-[2rem] shadow-sm border border-gray-50 dark:border-white/5 transition-all">
                   <div className="w-16 h-16 bg-blue-50 dark:bg-blue-500/10 rounded-2xl flex items-center justify-center text-3xl text-blue-600">{item.icon}</div>
@@ -243,7 +241,8 @@ const Home = () => {
 
       {/* 5. WORKFLOW SECTION (CREATIVE STEPS) */}
       <section className="py-32 container mx-auto px-6 text-center">
-        <h2 className="text-4xl font-black mb-20 text-gray-900 dark:text-white">Seamless Journey in <span className="text-blue-600">3 Easy Steps</span></h2>
+        <h2 className="text-5xl font-black mb-20 text-gray-900 dark:text-white">Seamless Journey in <span className="text-5xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-indigo-400 
+           dark:from-blue-800 dark:to-purple-700 bg-clip-text text-transparent font-extrabold">3 Easy Steps</span></h2>
         <div className="grid md:grid-cols-3 gap-16 relative">
           <div className="hidden md:block absolute top-1/2 left-1/4 right-1/4 h-[2px] bg-gradient-to-r from-transparent via-blue-500/30 to-transparent -z-10" />
           {[
@@ -265,15 +264,15 @@ const Home = () => {
       {/* 6. TESTIMONIALS (GLASS DESIGN) */}
       <section className="py-32 bg-[#0a0f1a] relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600 rounded-full blur-[150px]" />
-            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-600 rounded-full blur-[150px]" />
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600 rounded-full blur-[150px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-600 rounded-full blur-[150px]" />
         </div>
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-20">
-             <h2 className="text-5xl font-black text-white mb-6">Voice of Our Members</h2>
-             <div className="flex justify-center gap-1">
-                {[...Array(5)].map((_, i) => <FaStar key={i} className="text-blue-500" />)}
-             </div>
+            <h2 className="text-5xl font-black text-white mb-6">Voice of Our Members</h2>
+            <div className="flex justify-center gap-1">
+              {[...Array(5)].map((_, i) => <FaStar key={i} className="text-blue-500" />)}
+            </div>
           </div>
           <div className="grid md:grid-cols-3 gap-10">
             {[1, 2, 3].map((_, i) => (
@@ -295,70 +294,69 @@ const Home = () => {
 
       {/* 7. APP PROMO (MODERN GRADIENT) */}
       <section className="py-32 container mx-auto px-6">
-         <div className="bg-gradient-to-br from-blue-600 to-indigo-900 rounded-[4rem] p-16 flex flex-col lg:flex-row items-center gap-20 shadow-[0_50px_100px_-20px_rgba(37,99,235,0.4)] overflow-hidden relative">
-            <div className="absolute top-0 right-0 p-20 opacity-10">
-                <FaMobileAlt size={400} />
-            </div>
-            <div className="lg:w-1/2 text-white relative z-10">
-               <h2 className="text-5xl md:text-7xl font-black mb-8 leading-tight">TravelEase <br/> In Your Pocket.</h2>
-               <p className="text-blue-100 text-xl mb-12 font-light">Get exclusive early access to new fleet arrivals and 24/7 priority support with our mobile app.</p>
-               <div className="flex flex-wrap gap-4">
-                  {/* <button className="bg-white text-blue-900 px-8 py-4 rounded-2xl font-black flex items-center gap-3 hover:scale-105 transition-transform shadow-xl"><FaMobileAlt/> App Store</button>
-                  <button className="bg-black/20 backdrop-blur-xl border border-white/20 text-white px-8 py-4 rounded-2xl font-black flex items-center gap-3 hover:scale-105 transition-transform"><FaPlay className="text-xs"/> Play Store</button> */}
-                  
+        <div className="bg-gradient-to-br from-blue-600 to-indigo-900 rounded-[4rem] p-16 flex flex-col lg:flex-row items-center gap-20 shadow-[0_50px_100px_-20px_rgba(37,99,235,0.4)] overflow-hidden relative">
+          <div className="absolute top-0 right-0 p-20 opacity-10">
+            <FaMobileAlt size={400} />
+          </div>
+          <div className="lg:w-1/2 text-white relative z-10">
+            <h2 className="text-5xl md:text-7xl font-black mb-8 leading-tight">TravelEase <br /> In Your Pocket.</h2>
+            <p className="text-blue-100 text-xl mb-12 font-light">Get exclusive early access to new fleet arrivals and 24/7 priority support with our mobile app.</p>
+            <div className="flex flex-wrap gap-4">
 
-<div className="flex gap-4">
-  {/* App Store Button */}
-  <a
-    href="https://www.apple.com/app-store/"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="bg-white text-blue-900 px-8 py-4 rounded-2xl font-black flex items-center gap-3 hover:scale-105 transition-transform shadow-xl"
-  >
-    <FaApple size={22} /> App Store
-  </a>
 
-  {/* Play Store Button */}
-  <a
-    href="https://play.google.com/store"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="bg-black/20 backdrop-blur-xl border border-white/20 text-white px-8 py-4 rounded-2xl font-black flex items-center gap-3 hover:scale-105 transition-transform"
-  >
-    <FaGooglePlay size={20} /> Play Store
-  </a>
-</div>
 
-               </div>
+              <div className="flex gap-4">
+                {/* App Store Button */}
+                <a
+                  href="https://www.apple.com/app-store/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white text-blue-900 px-8 py-4 rounded-2xl font-black flex items-center gap-3 hover:scale-105 transition-transform shadow-xl"
+                >
+                  <FaApple size={22} /> App Store
+                </a>
+
+                {/* Play Store Button */}
+                <a
+                  href="https://play.google.com/store"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-black/20 backdrop-blur-xl border border-white/20 text-white px-8 py-4 rounded-2xl font-black flex items-center gap-3 hover:scale-105 transition-transform"
+                >
+                  <FaGooglePlay size={20} /> Play Store
+                </a>
+              </div>
+
             </div>
-            <div className="lg:w-1/2">
-               <motion.img 
-                animate={{ y: [0, -20, 0] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                src="https://cabsware.com/wp-content/uploads/2025/11/2.webp" 
-                className="w-full max-w-md mx-auto rounded-4xl"
-               />
-            </div>
-         </div>
+          </div>
+          <div className="lg:w-1/2">
+            <motion.img
+              animate={{ y: [0, -20, 0] }}
+              transition={{ duration: 4, repeat: Infinity }}
+              src="https://cabsware.com/wp-content/uploads/2025/11/2.webp"
+              className="w-full max-w-md mx-auto rounded-4xl"
+            />
+          </div>
+        </div>
       </section>
 
       {/* 8. PARTNER LOGOS (MINIMALIST) */}
       <section className="py-20 opacity-30 dark:opacity-20 grayscale hover:grayscale-0 transition-all duration-1000">
         <div className="container mx-auto px-6 flex flex-wrap justify-center gap-16 md:gap-32">
-           {["TESLA", "BMW", "AUDI", "NISSAN", "TOYOTA"].map(brand => (
-             <span key={brand} className="text-3xl font-black tracking-[0.5em] text-gray-500 dark:text-white">{brand}</span>
-           ))}
+          {["TESLA", "BMW", "AUDI", "NISSAN", "TOYOTA"].map(brand => (
+            <span key={brand} className="text-3xl font-black tracking-[0.5em] text-gray-500 dark:text-white">{brand}</span>
+          ))}
         </div>
       </section>
 
       {/* 9. NEWSLETTER (THE FINALE) */}
       <section className="py-20 bg-white dark:bg-[#0a0f1a] transition-colors duration-500">
-      <div className="max-w-7xl mx-auto px-6">
-        
-     
-       
-      </div>
-    </section>
+        <div className="max-w-7xl mx-auto px-6">
+
+
+
+        </div>
+      </section>
 
     </div>
   );

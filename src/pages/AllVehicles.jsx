@@ -88,9 +88,10 @@ const AllVehicles = () => {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white mb-6"
+            className="text-5xl  font-black text-gray-900 dark:text-white mb-6"
           >
-            All <span className="text-blue-600">Vehicles</span>
+            All <span className="font-black tracking-tight bg-gradient-to-r from-blue-600 to-indigo-400 
+           dark:from-blue-800 dark:to-purple-700 bg-clip-text text-transparent font-extrabold">Vehicles</span>
           </motion.h1>
           <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-lg">
             Find the perfect ride for your next journey from our luxury and economy collections.

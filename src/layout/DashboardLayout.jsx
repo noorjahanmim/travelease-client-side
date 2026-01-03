@@ -41,15 +41,16 @@ const DashboardLayout = () => {
       <header className="sticky top-0 z-40 bg-white/80 dark:bg-gray-800/80 backdrop-blur border-b border-gray-200 dark:border-white/10">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-start gap-3">
             <button
               onClick={() => setOpen(!open)}
               className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700"
             >
               {open ? <X size={18} /> : <Menu size={18} />}
             </button>
-            <span className="font-bold text-lg">
-              Travel<span className="text-indigo-600">Ease</span>
+            <span className="text-2xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-indigo-400 
+           dark:from-blue-800 dark:to-purple-700 bg-clip-text text-transparent font-extrabold">
+              TravelEase
             </span>
           </div>
 
