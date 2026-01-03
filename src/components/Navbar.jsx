@@ -2,24 +2,30 @@ import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import toast from "react-hot-toast";
-import { FaSun, FaMoon, FaBars, FaTimes } from "react-icons/fa";
+import {
+  FaSun,
+  FaMoon,
+  FaBars,
+  FaTimes,
+  FaUserCircle,
+} from "react-icons/fa";
 
 const Navbar = () => {
   const { user, signOutUser } = useAuth();
 
-  // Theme state
+  /* ---------------- Theme ---------------- */
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   useEffect(() => {
-    document.querySelector("html").setAttribute("data-theme", theme);
+    document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
+  const toggleTheme = () =>
+    setTheme(theme === "light" ? "dark" : "light");
 
-  // Mobile menu
+  /* ---------------- Mobile ---------------- */
   const [mobileOpen, setMobileOpen] = useState(false);
-  const toggleMobileMenu = () => setMobileOpen(!mobileOpen);
 
   const handleLogout = () => {
     signOutUser()
@@ -27,113 +33,123 @@ const Navbar = () => {
       .catch(() => toast.error("Logout failed!"));
   };
 
-  // Public & Private Links
+  /* ---------------- Links ---------------- */
   const publicLinks = [
     { name: "Home", path: "/" },
     { name: "All Vehicles", path: "/allVehicles" },
+    { name: "About", path: "/about" },
+    { name: "Contact", path: "/contact" },
   ];
 
-  const privateLinks = [
-    { name: "Add Vehicle", path: "/addVehicle" },
-    { name: "My Vehicles", path: "/myVehicles" },
-    { name: "My Bookings", path: "/myBookings" },
-  ];
+  /* ---------------- Active Style ---------------- */
+  const navLinkClass = ({ isActive }) =>
+    isActive
+      ? "text-indigo-600 dark:text-indigo-400 font-semibold relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:bg-indigo-600 dark:after:bg-indigo-400"
+      : "hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors";
 
   return (
-    <nav className="bg-[#1E40AF] dark:bg-[#1E3A8A] text-white shadow-md fixed w-full z-50 transition-colors duration-300">
-      <div className="container mx-auto flex items-center justify-between py-4 px-4 md:px-0">
+    <nav className="sticky top-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur border-b border-gray-100 dark:border-white/10">
+      <div className="container mx-auto flex items-center justify-between h-16 px-4">
 
-        {/* Brand */}
-        <Link to="/" className="text-2xl font-bold hover:text-blue-300">
+        {/* ---------------- Logo ---------------- */}
+        <Link
+          to="/"
+          className="text-2xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-indigo-400 
+           dark:from-blue-800 dark:to-purple-700 bg-clip-text text-transparent font-extrabold"
+        >
           TravelEase
         </Link>
 
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-6">
-
-          {/* Public Links */}
+        {/* ---------------- Desktop Menu ---------------- */}
+        <ul className="hidden md:flex items-center gap-8 text-sm">
           {publicLinks.map((link) => (
             <li key={link.path}>
-              <NavLink
-                to={link.path}
-                className={({ isActive }) =>
-                  isActive
-                    ? "underline underline-offset-4 font-semibold"
-                    : "hover:text-blue-300 transition-colors duration-300"
-                }
-              >
+              <NavLink to={link.path} className={navLinkClass}>
                 {link.name}
               </NavLink>
             </li>
           ))}
 
-          {/* Private Links (Only if user logged in) */}
-          {user &&
-            privateLinks.map((link) => (
-              <li key={link.path}>
-                <NavLink
-                  to={link.path}
-                  className={({ isActive }) =>
-                    isActive
-                      ? "underline underline-offset-4 font-semibold"
-                      : "hover:text-blue-300 transition-colors duration-300"
-                  }
-                >
-                  {link.name}
-                </NavLink>
-              </li>
-            ))}
+          {user && (
+            <li>
+              <NavLink to="/dashboard" className={navLinkClass}>
+                Dashboard
+              </NavLink>
+            </li>
+          )}
         </ul>
 
-        {/* Right side user + theme */}
+        {/* ---------------- Right Section ---------------- */}
         <div className="hidden md:flex items-center gap-4">
-          {/* Theme toggle */}
+
+          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full bg-white text-blue-600 dark:bg-gray-700 dark:text-yellow-300 transition-colors duration-300"
+            className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:scale-105 transition"
+            aria-label="Toggle theme"
           >
             {theme === "light" ? <FaMoon /> : <FaSun />}
           </button>
 
-          {/* User Section */}
+          {/* User / Auth */}
           {user ? (
-            <div className="flex items-center gap-2 group relative">
-              {user.photoURL ? (
-                <img
-                  src={user.photoURL}
-                  alt={user.displayName || "User"}
-                  className="w-10 h-10 rounded-full border-2 border-white"
-                />
-              ) : (
-                <div className="w-10 h-10 rounded-full bg-white text-blue-600 flex items-center justify-center font-bold">
-                  {user.displayName?.charAt(0).toUpperCase() || "U"}
-                </div>
-              )}
-
-              {user.displayName && (
-                <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-                  {user.displayName}
-                </span>
-              )}
-
-              <button
-                onClick={handleLogout}
-                className="bg-white text-blue-600 px-3 py-1 rounded-md hover:bg-gray-200 transition-colors duration-300"
-              >
-                Log Out
+            <div className="relative group">
+              <button className="flex items-center gap-2">
+                {user.photoURL ? (
+                  <img
+                    src={user.photoURL}
+                    alt="User"
+                    className="w-9 h-9 rounded-full border-2 border-indigo-500 object-cover"
+                  />
+                ) : (
+                  <FaUserCircle className="text-3xl text-indigo-600" />
+                )}
               </button>
+
+              {/* Dropdown */}
+              <div className="absolute right-0 mt-3 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                <div className="px-4 py-3 border-b dark:border-white/10">
+                  <p className="text-sm font-semibold">
+                    {user.displayName || "User"}
+                  </p>
+                  <p className="text-xs text-gray-500 truncate">
+                    {user.email}
+                  </p>
+                </div>
+
+                <Link
+                  to="/profile"
+                  className="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-white/10"
+                >
+                  Profile
+                </Link>
+
+                <Link
+                  to="/dashboard"
+                  className="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-white/10"
+                >
+                  Dashboard
+                </Link>
+
+                <button
+                  onClick={handleLogout}
+                  className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-500/10"
+                >
+                  Logout
+                </button>
+              </div>
             </div>
           ) : (
             <div className="flex gap-2">
               <Link
                 to="/login"
-                className="bg-white text-blue-600 px-3 py-1 rounded-md hover:bg-gray-200 transition-colors duration-300"
+                className="px-4 py-2 text-sm font-semibold rounded-lg hover:bg-gray-100 dark:hover:bg-white/10"
               >
                 Login
               </Link>
               <Link
                 to="/register"
-                className="border border-white px-3 py-1 rounded-md hover:bg-white hover:text-blue-600 transition-colors duration-300"
+                className="px-4 py-2 text-sm font-semibold rounded-lg bg-indigo-600 text-white hover:bg-indigo-700"
               >
                 Register
               </Link>
@@ -141,92 +157,40 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Mobile Button */}
-        <button onClick={toggleMobileMenu} className="md:hidden text-2xl">
+        {/* ---------------- Mobile Button ---------------- */}
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="md:hidden text-2xl"
+        >
           {mobileOpen ? <FaTimes /> : <FaBars />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* ---------------- Mobile Menu ---------------- */}
       {mobileOpen && (
-        <div className="md:hidden bg-[#1E40AF] dark:bg-[#1E3A8A] text-white px-4 pb-4 space-y-4 transition-all duration-300">
-
-          {/* Public Links */}
-          <ul className="flex flex-col gap-4">
+        <div className="md:hidden bg-white dark:bg-gray-900 border-t">
+          <ul className="flex flex-col gap-4 p-4">
             {publicLinks.map((link) => (
-              <li key={link.path}>
-                <NavLink
-                  to={link.path}
-                  onClick={() => setMobileOpen(false)}
-                  className={({ isActive }) =>
-                    isActive
-                      ? "underline underline-offset-4 font-semibold"
-                      : "hover:text-blue-300 transition-colors duration-300"
-                  }
-                >
-                  {link.name}
-                </NavLink>
-              </li>
+              <NavLink
+                key={link.path}
+                to={link.path}
+                onClick={() => setMobileOpen(false)}
+                className={navLinkClass}
+              >
+                {link.name}
+              </NavLink>
             ))}
 
-            {/* Private Links */}
-            {user &&
-              privateLinks.map((link) => (
-                <li key={link.path}>
-                  <NavLink
-                    to={link.path}
-                    onClick={() => setMobileOpen(false)}
-                    className={({ isActive }) =>
-                      isActive
-                        ? "underline underline-offset-4 font-semibold"
-                        : "hover:text-blue-300 transition-colors duration-300"
-                    }
-                  >
-                    {link.name}
-                  </NavLink>
-                </li>
-              ))}
-          </ul>
-
-          {/* Mobile bottom user section */}
-          <div className="flex items-center gap-4 mt-4">
-            {/* Theme */}
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full bg-white text-blue-600 dark:bg-gray-700 dark:text-yellow-300 transition-colors duration-300"
-            >
-              {theme === "light" ? <FaMoon /> : <FaSun />}
-            </button>
-
-            {user ? (
-              <button
-                onClick={() => {
-                  handleLogout();
-                  setMobileOpen(false);
-                }}
-                className="bg-white text-blue-600 px-3 py-1 rounded-md hover:bg-gray-200 transition-colors duration-300"
+            {user && (
+              <NavLink
+                to="/dashboard"
+                onClick={() => setMobileOpen(false)}
+                className={navLinkClass}
               >
-                Log Out
-              </button>
-            ) : (
-              <>
-                <Link
-                  to="/login"
-                  onClick={() => setMobileOpen(false)}
-                  className="bg-white text-blue-600 px-3 py-1 rounded-md hover:bg-gray-200 transition-colors duration-300"
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/register"
-                  onClick={() => setMobileOpen(false)}
-                  className="border border-white px-3 py-1 rounded-md hover:bg-white hover:text-blue-600 transition-colors duration-300"
-                >
-                  Register
-                </Link>
-              </>
+                Dashboard
+              </NavLink>
             )}
-          </div>
+          </ul>
         </div>
       )}
     </nav>
