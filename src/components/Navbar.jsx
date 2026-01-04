@@ -44,9 +44,8 @@ const Navbar = () => {
   /* ---------------- Active Style ---------------- */
   const navLinkClass = ({ isActive }) =>
     isActive
-      ? "text-indigo-600 dark:text-indigo-400 font-semibold relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:bg-indigo-600 dark:after:bg-indigo-400"
-      : "hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors";
-
+      ? "bg-gradient-to-r from-blue-600 to-indigo-400 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent font-bold relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:bg-gradient-to-r after:from-blue-600 after:to-indigo-400"
+      : "text-gray-600 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-400 hover:bg-clip-text hover:text-transparent transition-all duration-300";
   return (
     <nav className="sticky top-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur border-b border-gray-100 dark:border-white/10">
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
