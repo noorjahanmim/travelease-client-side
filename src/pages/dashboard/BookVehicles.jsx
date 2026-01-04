@@ -94,7 +94,8 @@ const BookVehicles = () => {
               <button
                 onClick={() => handleBook(vehicle._id)}
                 disabled={bookingLoading[vehicle._id]}
-                className="flex-1 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold"
+                className="flex-1 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-400 
+           dark:from-blue-800 dark:to-purple-700 text-white font-semibold"
               >
                 {bookingLoading[vehicle._id] ? "Booking..." : "Book Now"}
               </button>

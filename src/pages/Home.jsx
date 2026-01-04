@@ -27,7 +27,12 @@ const Home = () => {
       img: "https://sm.pcmag.com/t/pcmag_me/review/2/2024-kia-n/2024-kia-niro-ev_8av1.1920.jpg",
       title: "Adventure Awaits Beyond the Horizon",
       subtitle: "Unleash the power of our off-road SUVs for your next great escape."
-    }
+    },
+    // {
+    //   img: "https://car-images.bauersecure.com/wp-images/3679/best-luxury-cars-2024.jpeg",
+    //   title: "Adventure Awaits Beyond the Horizon",
+    //   subtitle: "Unleash the power of our off-road SUVs for your next great escape."
+    // }
   ];
 
   useEffect(() => {
