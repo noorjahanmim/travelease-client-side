@@ -77,7 +77,7 @@ const Home = () => {
         className="w-full h-full object-cover"
         alt="hero"
       />
-      <div className="absolute inset-0 bg-black/40" /> {/* Overlay */}
+      <div className="absolute inset-0 bg-black/40" /> 
     </motion.div>
   </AnimatePresence>
 
@@ -157,7 +157,7 @@ const Home = () => {
             <span className="text-blue-500 font-black tracking-[0.3em] uppercase text-xs mb-4 block">The Collections</span>
             <h2 className="text-5xl font-black text-gray-900 dark:text-white">Our Exclusive <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-400">Latest Garage</span></h2>
           </motion.div>
-          <Link to="/allVehicles" className="px-8 py-4 bg-gray-100 dark:bg-white/5 dark:text-white rounded-2xl font-bold hover:bg-blue-600 hover:text-white transition-all">View Full Fleet</Link>
+          <Link to="/allVehicles" className="px-8 py-4 bg-gray-100 dark:bg-white/5 dark:text-white rounded-2xl font-bold hover:bg-blue-600 hover:text-white transition-all">View All Vehicles</Link>
         </div>
 
         <motion.div

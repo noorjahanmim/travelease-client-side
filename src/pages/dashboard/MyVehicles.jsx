@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // useNavigate import
+import { Link, useNavigate } from "react-router-dom"; 
 import axios from "axios";
 import Swal from "sweetalert2";
 
-import { FaCarSide, FaMapMarkerAlt, FaDollarSign, FaPlus } from "react-icons/fa"; // FaPlus icon
+import { FaCarSide, FaMapMarkerAlt, FaDollarSign, FaPlus } from "react-icons/fa"; 
 import { motion } from "framer-motion";
 import { useAuth } from "../../hooks/useAuth";
 import LoadingSpinner from "../../components/LoadingSpinner";
